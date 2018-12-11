@@ -1,5 +1,5 @@
 /* P6.c */ 
-/* Anaísa Fonseca */ 
+/* AnaÃ­sa Fonseca */ 
 /* 11811ECP012 */ 
 
 #include <stdio.h>
@@ -26,7 +26,6 @@ int main(){
      xy->y= r*sin(i*2.0*pi/(N-1));
      printf("(%.3f, %.3f) ", xy->x, xy->y);
    }
-   printf("\ ");
    free(xy);
    return 0;
 }
