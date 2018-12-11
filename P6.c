@@ -25,53 +25,13 @@ void mostra_numeros(Ponto * p_ini, Ponto * p_fim){
   }
 }
 
-void grava_pontos(char nome[], Ponto * pontos, int n){
-  FILE * arquivo;
-  arquivo = fopen(nome, "wb");
-  fwrite(pontos, n, sizeof(Ponto), arquivo);
-  fclose(arquivo);
-  printf("Arquivo gravado");
-}
-
-Ponto * le_numeros(char nome[], unsigned int * pn){
-  Ponto *pontos = (Ponto *) malloc(sizeof(Ponto));
-  unsigned int n = 0;
-  FILE * arquivo;
-  arquivo = fopen(nome, "rb");
-  if(arquivo != NULL){
-    while(1){
-      fread(pontos, 1, sizeof(Ponto), arquivo);
-      if(feof(arquivo)) break;
-      n++;
-    }
-    rewind(arquivo);
-    pontos  = (Ponto *) realloc(pontos, n*sizeof(Ponto));
-    fread(pontos, n, sizeof(Ponto), arquivo);
-    *pn = n;
-    return pontos;
-  }
-  printf("Digite o numero de vezes em que o ciclo vai ser dividido.");
-  return 0;
-}
-
 int main(){
-  unsigned int n = 0, escolha = 0;
+  unsigned int n = 0;
   Ponto *pontos;
-  char nome[] = "pontos.dat";
-  printf("1 - Digitar o numero de vezes que o ciclo trigonometrico vai ser dividido.\n2 - Mostrar as coordenadas dos pontos que dividem a circunferência.\nEscolha: ");
-  scanf("%d", &escolha);
-  if(escolha == 1){
-    printf("Digite o numero de vezes em que o ciclo trigonometrico vai ser dividido: ");
-    scanf("%d", &n); getchar();
-    pontos = gera_numeros(n);
-    grava_pontos(nome, pontos, n);
-  }
-    else if(escolha == 2){
-      pontos = le_numeros(nome, &n);
-      mostra_numeros(pontos, pontos + n);
-  }
-      else
-        printf("Escolha invalida");
+  printf("Digite o numero de vezes que o ciclo trigonometrico vai ser dividido: ");
+  scanf("%d", &n); getchar();
+  pontos = gera_numeros(n);
+  mostra_numeros(pontos, pontos + n);
   free(pontos);
   printf("\n");
   return 0;
